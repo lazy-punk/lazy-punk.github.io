@@ -47,7 +47,7 @@
         <section id="usage">
             <h2>Usage Example (Linear Regression)</h2>
             <p>Here's a quick example demonstrating how to use jackofalltrades for linear regression:</p>
-            <pre><code>import jackofalltrades as joft
+            <pre><code>import jackofalltrades
 from jackofalltrades.datasets import get_data
 
 # Load data and split into training and testing sets
@@ -55,7 +55,30 @@ ldset = get_dataset()
 X, y = ldset.get_btc()
 
 # Train a linear regression model
-model = joft.Models.LinearRegression(X, y)
+model = jackofalltrades.Models.LinearRegression(X, y)
+model.fit()
+
+# Make predictions and evaluate performance
+y_predicted = model.predict(X)
+model.evaluate(y, y_predicted)</code></pre>
+        </section>
+
+        <section id="usage">
+            <h2>Usage Example (Logistic Regression)</h2>
+            <p>Here's a quick example demonstrating how to use jackofalltrades for linear regression:</p>
+            <pre><code>import jackofalltrades
+from sklearn.datasets import load_breast_cancer
+
+# Load the breast cancer dataset
+data = load_breast_cancer()
+
+# Extract features (X) and target variable (y)
+X = data.data
+y = data.target
+ldset = get_dataset()
+
+# Train a logistic regression model
+model = jackofalltrades.Models.LogisticRegression(X, y)
 model.fit()
 
 # Make predictions and evaluate performance
