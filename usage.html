@@ -24,8 +24,9 @@
     
     <main>
         <section id="usage" style="margin-bottom: 100px;">
-            <h2>Usage Example (Linear Regression)</h2>
-            <p>Here's a quick example demonstrating how to use jackofalltrades for linear regression:</p>
+            <center><h1>Usage Example (Linear Regression)</h1></center>
+            <center><h3>Here's a quick example demonstrating how to use jackofalltrades for linear regression:</h3></center>
+            <div style="display: flex; justify-content: center; text-align: left;">
             <pre><code>import jackofalltrades
 from jackofalltrades.datasets import get_data
 
@@ -34,15 +35,16 @@ ldset = get_dataset()
 X, y = ldset.get_btc()
 
 # Train a linear regression model
-model = jackofalltrades.Models.LinearRegression(X, y)
-model.fit()
+model = jackofalltrades.Models.LinearRegression()
+model.fit(X, y)
 
 # Make predictions and evaluate performance
 y_predicted = model.predict(X)
-model.evaluate(y, y_predicted)</code></pre>
+model.evaluate(y, y_predicted)</code></pre></div>
 
-            <h2>Usage Example (Logistic Regression)</h2>
-            <p>Here's a quick example demonstrating how to use jackofalltrades for logistic regression:</p>
+            <center><h1>Usage Example (Logistic Regression)</h1></center>
+            <center><h3>Here's a quick example demonstrating how to use jackofalltrades for logistic regression:</h3></center>
+            <div style="display: flex; justify-content: center; text-align: left;">
             <pre><code>import jackofalltrades
 from sklearn.datasets import load_breast_cancer
 
@@ -55,53 +57,56 @@ y = data.target
 ldset = get_dataset()
 
 # Train a logistic regression model
-model = jackofalltrades.Models.LogisticRegression(X, y)
-model.fit()
+model = jackofalltrades.Models.LogisticRegression()
+model.fit(X, y)
 
 # Make predictions and evaluate performance
 y_predicted = model.predict(X)
-model.evaluate(y, y_predicted)</code></pre>
+model.evaluate(y, y_predicted)</code></pre></div>
 
-<h2>Usage Example (Image Classification)</h2>
-            <p>Here's a quick example demonstrating how to use jackofalltrades for logistic regression:</p>
-            <pre><code>from jackofalltrades.datasets import get_dataset  # Import custom dataset module
-from jackofalltrades.Models import ImageClassification  # Import custom model class
-from sklearn.model_selection import train_test_split  # Import train-test split function from sklearn
-import numpy as np  # Import NumPy for numerical operations
+            <center><h1>Usage Example (Image Classification)</h1></center>
+            <center><h3>Here's a quick example demonstrating how to use jackofalltrades for Image Classification:</h3></center>
+            <div style="display: flex; justify-content: center; text-align: left;">
+        <pre><code>
+                                from jackofalltrades.datasets import get_dataset  # Import custom dataset module
+                                from jackofalltrades.Models import ImageClassification  # Import custom model class
+                                from sklearn.model_selection import train_test_split  # Import train-test split function from sklearn
+                                import numpy as np  # Import NumPy for numerical operations
 
-# Initialize dataset object
-ldset = get_dataset()
+                                # Initialize dataset object
+                                ldset = get_dataset()
 
-# Fetch MNIST dataset
-X, y = ldset.get_mnist()
-print(y)  # Print target values to verify
+                                # Fetch MNIST dataset
+                                X, y = ldset.get_mnist()
+                                print(y)  # Print target values to verify
 
-# Normalize the input data by scaling pixel values to the range [0, 1]
-X = X.to_numpy() / 255.0
+                                # Normalize the input data by scaling pixel values to the range [0, 1]
+                                X = X.to_numpy() / 255.0
 
-# Reshape the input data to fit the model's expected input shape (28x28x1)
-X = X.reshape(-1, 28, 28, 1)
+                                # Reshape the input data to fit the model's expected input shape (28x28x1)
+                                X = X.reshape(-1, 28, 28, 1)
 
-# Split the dataset into training and testing sets (80% train, 20% test)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+                                # Split the dataset into training and testing sets (80% train, 20% test)
+                                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-# Determine the number of unique classes in the target values
-num_classes = len(list(y.unique()))
+                                # Determine the number of unique classes in the target values
+                                num_classes = len(list(y.unique()))
 
-# Initialize the image classification model
-# Set input shape to (28, 28, 1), specify the number of classes, and disable normalization
-model = ImageClassification(input_shape=(28, 28, 1), num_classes=num_classes, normalizer=False)
+                                # Initialize the image classification model
+                                # Set input shape to (28, 28, 1), specify the number of classes, and disable normalization
+                                model = ImageClassification(input_shape=(28, 28, 1), num_classes=num_classes, normalizer=False)
 
-# Fit the model to the training data
-# Train for 10 epochs with a batch size of 32, using CPU for computation
-model.fit(X_train, y_train, epochs=10, batch_size=32, device='cpu')
+                                # Fit the model to the training data
+                                # Train for 10 epochs with a batch size of 32, using CPU for computation
+                                model.fit(X_train, y_train, epochs=10, batch_size=32, device='cpu')
 
-# Evaluate the model on the test data
-model.evaluate(X_test, y_test)
+                                # Evaluate the model on the test data
+                                model.evaluate(X_test, y_test)
 
-# Make predictions on the test data
-y_predict = model.predict(X_test)
-model.save('model.keras')</code></pre>
+                                # Make predictions on the test data
+                                y_predict = model.predict(X_test)
+                                model.save('model.keras')
+            </code></pre></div>
 
         </section>
     </main>
