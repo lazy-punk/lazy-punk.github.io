@@ -12,7 +12,7 @@ body {
   
   nav {
     display: inline-block;
- background: linear-gradient(135deg, #ef5833, #ef9f63, #80abfb, #96c231);
+ background: linear-gradient(90deg, #ef5833, #ef9f63, #80abfb, #96c231);
     color: #fff;
     border-radius: 5px;
     padding: 0 10px;
@@ -34,6 +34,8 @@ body {
   
   nav ul li {
       display: inline;
+      margin: auto;
+      border: 1px;
   }
   
   nav ul li a {
@@ -111,4 +113,57 @@ body {
   #contact-form button:hover {
       background-color: #45a049;
   }
-  
+
+
+  #header-buttons{
+      display: flex;
+      justify-content: space-between;
+      justify-items: center;
+  }
+
+@media only screen and (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+    }
+
+    footer {
+        position: static;
+    }
+}
+
+/* Medium devices (tablets, 600px to 768px) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        flex: 1 1 50%;
+        text-align: center;
+    }
+
+    footer {
+        position: static;
+    }
+}
+
+/* Large devices (desktops, 769px and up) */
+@media only screen and (min-width: 769px) {
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav ul li {
+        display: inline;
+    }
+
+    footer {
+        position: fixed;
+    }
+}
