@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jack of All Trades - Usage Examples</title>
+    <title>jackofalltrades - Usage Examples & API Documentation</title>
     <link rel="icon" href="joft.jpg">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,58 +14,236 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="features.html">Features</a></li>
                 <li><a href="installation.html">Installation</a></li>
-                <li><a href="usage.html">Usage Example</a></li>
+                <li><a href="usage.html">Usage & API</a></li>
                 <li><a href="contributing.html">Contributing</a></li>
                 <li><a href="license.html">License</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
         <section id="usage" style="margin-bottom: 100px;">
-            <h2>Usage Example (Linear Regression)</h2>
-            <p>Here's a quick example demonstrating how to use jackofalltrades for linear regression:</p>
-            <pre><code>import jackofalltrades
-from jackofalltrades.datasets import get_data
+            <h1>Usage Examples & API Documentation</h1>
+            
+            <div class="usage-section">
+                <h2>🏠 Real Estate Price Prediction (Linear Regression)</h2>
+                <p>Predict real estate prices using the built-in dataset:</p>
+                <pre><code>from jackofalltrades.datasets import get_real_estate
+from jackofalltrades.Models import LinearRegression
+from jackofalltrades.Errors import Error
 
-# Load data and split into training and testing sets
-ldset = get_dataset()
-X, y = ldset.get_btc()
+# Load dataset
+X, y = get_real_estate()
 
-# Train a linear regression model
-model = jackofalltrades.Models.LinearRegression(X, y)
-model.fit()
+# Train model
+model = LinearRegression()
+model.fit(X, y)
 
-# Make predictions and evaluate performance
-y_predicted = model.predict(X)
-model.evaluate(y, y_predicted)</code></pre>
+# Make predictions
+predictions = model.predict(X)
 
-            <h2>Usage Example (Logistic Regression)</h2>
-            <p>Here's a quick example demonstrating how to use jackofalltrades for logistic regression:</p>
-            <pre><code>import jackofalltrades
-from sklearn.datasets import load_breast_cancer
+# Evaluate performance
+evaluator = Error(y_true=y, y_predicted=predictions)
+print(f"R² Score: {evaluator.RSquared():.3f}")
+print(f"MSE: {evaluator.MSE():.3f}")</code></pre>
+            </div>
 
-# Load the breast cancer dataset
-data = load_breast_cancer()
+            <div class="usage-section">
+                <h2>📊 Classification with Built-in Models</h2>
+                <p>Use the Classification module for binary and multi-class classification:</p>
+                <pre><code>from jackofalltrades.Models.Classification import LogisticRegression
+from jackofalltrades.Errors import Error
+import numpy as np
 
-# Extract features (X) and target variable (y)
-X = data.data
-y = data.target
-ldset = get_dataset()
+# Create sample data
+X = np.random.rand(1000, 4)
+y = np.random.randint(0, 2, 1000)
 
-# Train a logistic regression model
-model = jackofalltrades.Models.LogisticRegression(X, y)
-model.fit()
+# Train logistic regression model
+model = LogisticRegression()
+model.fit(X, y)
 
-# Make predictions and evaluate performance
-y_predicted = model.predict(X)
-model.evaluate(y, y_predicted)</code></pre>
+# Make predictions
+predictions = model.predict(X)
+
+# Evaluate
+evaluator = Error(y_true=y, y_predicted=predictions)
+print(f"Accuracy: {evaluator.accuracy():.3f}")</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>🧠 Neural Networks</h2>
+                <p>Build neural networks for complex pattern recognition:</p>
+                <pre><code>from jackofalltrades.neural_network import MLPRegressor
+from jackofalltrades.datasets import get_real_estate
+
+# Load data
+X, y = get_real_estate()
+
+# Create and train neural network
+model = MLPRegressor(hidden_layers=[100, 50], activation='relu')
+model.fit(X, y, epochs=100)
+
+# Predict
+predictions = model.predict(X)</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>🎲 Generative Models - GANs</h2>
+                <p>Generate synthetic data using Generative Adversarial Networks:</p>
+                <pre><code>from jackofalltrades.Models.GAN import GAN
+import torch
+
+# Create GAN for 28x28 images
+gan = GAN(noise_dim=100, image_channels=1, image_size=28)
+
+# Generate synthetic images
+noise = torch.randn(16, 100)  # Generate 16 samples
+generated_images = gan.generator(noise)
+
+print(f"Generated images shape: {generated_images.shape}")</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>🔄 Variational Autoencoders (VAE)</h2>
+                <p>Learn data representations and generate new samples:</p>
+                <pre><code>from jackofalltrades.Models.VAE import VAE
+import torch
+
+# Create VAE
+vae = VAE(input_dim=784, latent_dim=20)
+
+# Encode and decode data
+data = torch.randn(32, 784)  # Batch of flattened 28x28 images
+reconstructed, mu, logvar = vae(data)
+
+# Generate new samples
+with torch.no_grad():
+    z = torch.randn(10, 20)  # Sample from latent space
+    generated = vae.decoder(z)</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>🏘️ K-Nearest Neighbors</h2>
+                <p>Classify data points based on their neighbors:</p>
+                <pre><code>from jackofalltrades.neighbors import KNeighborsClassifier
+import numpy as np
+
+# Create sample data
+X = np.random.rand(100, 2)
+y = np.random.randint(0, 3, 100)
+
+# Train KNN classifier
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X, y)
+
+# Predict new samples
+new_samples = np.random.rand(10, 2)
+predictions = knn.predict(new_samples)</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>📈 Built-in Datasets</h2>
+                <p>Access curated datasets for quick experimentation:</p>
+                <pre><code>from jackofalltrades.datasets import (
+    get_real_estate, 
+    get_btc_data, 
+    get_london_house_prices,
+    get_fuel_data
+)
+
+# Real estate dataset
+X_real, y_real = get_real_estate()
+print(f"Real estate data: {X_real.shape}, {y_real.shape}")
+
+# Bitcoin price data
+btc_data = get_btc_data()
+print(f"BTC data columns: {btc_data.columns.tolist()}")
+
+# London house prices
+london_data = get_london_house_prices()
+
+# Fuel consumption data
+fuel_data = get_fuel_data()</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>📊 Model Evaluation</h2>
+                <p>Comprehensive evaluation metrics for all model types:</p>
+                <pre><code>from jackofalltrades.Errors import Error
+
+# For regression tasks
+evaluator = Error(y_true=y_actual, y_predicted=y_pred)
+
+# Regression metrics
+print(f"R² Score: {evaluator.RSquared():.3f}")
+print(f"MSE: {evaluator.MSE():.3f}")
+print(f"MAE: {evaluator.MAE():.3f}")
+print(f"RMSE: {evaluator.RMSE():.3f}")
+
+# For classification tasks
+print(f"Accuracy: {evaluator.accuracy():.3f}")
+print(f"Precision: {evaluator.precision():.3f}")
+print(f"Recall: {evaluator.recall():.3f}")
+print(f"F1 Score: {evaluator.f1_score():.3f}")</code></pre>
+            </div>
+
+            <div class="usage-section">
+                <h2>🚀 Quick Start Template</h2>
+                <p>Complete workflow from data loading to evaluation:</p>
+                <pre><code># Complete ML pipeline example
+from jackofalltrades.datasets import get_real_estate
+from jackofalltrades.Models import LinearRegression
+from jackofalltrades.Errors import Error
+from sklearn.model_selection import train_test_split
+
+# 1. Load and prepare data
+X, y = get_real_estate()
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 2. Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 3. Make predictions
+train_pred = model.predict(X_train)
+test_pred = model.predict(X_test)
+
+# 4. Evaluate performance
+train_eval = Error(y_true=y_train, y_predicted=train_pred)
+test_eval = Error(y_true=y_test, y_predicted=test_pred)
+
+print("Training Performance:")
+print(f"  R² Score: {train_eval.RSquared():.3f}")
+print(f"  RMSE: {train_eval.RMSE():.3f}")
+
+print("Test Performance:")
+print(f"  R² Score: {test_eval.RSquared():.3f}")
+print(f"  RMSE: {test_eval.RMSE():.3f}")</code></pre>
+            </div>
+
+            <div class="api-reference">
+                <h2>📚 API Reference</h2>
+                <div class="api-section">
+                    <h3>Core Modules</h3>
+                    <ul>
+                        <li><strong>jackofalltrades.Models</strong> - Linear/Logistic Regression, Classification, GANs, VAEs</li>
+                        <li><strong>jackofalltrades.linear_model</strong> - Advanced linear regression algorithms</li>
+                        <li><strong>jackofalltrades.neural_network</strong> - Multi-layer perceptrons and deep learning</li>
+                        <li><strong>jackofalltrades.neighbors</strong> - K-nearest neighbors algorithms</li>
+                        <li><strong>jackofalltrades.datasets</strong> - Built-in datasets and loading utilities</li>
+                        <li><strong>jackofalltrades.Errors</strong> - Comprehensive evaluation metrics</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2024 Jack of All Trades. All rights reserved.</p>
+        <p>&copy; 2025 jackofalltrades. Open source machine learning made simple.</p>
     </footer>
 </body>
 </html>

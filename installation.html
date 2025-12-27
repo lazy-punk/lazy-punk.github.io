@@ -14,21 +14,139 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="features.html">Features</a></li>
                 <li><a href="installation.html">Installation</a></li>
-                <li><a href="usage.html">Usage Example</a></li>
+                <li><a href="usage.html">Usage & API</a></li>
                 <li><a href="contributing.html">Contributing</a></li>
                 <li><a href="license.html">License</a></li>
-                <li><a href="contact.html">Contact Me</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
         <section id="installation" style="margin-bottom: 100px;">
-            <h2>Installation</h2>
-            <p>Install jackofalltrades using pip:</p>
-            <pre><code>pip install jackofalltrades</code></pre>
+            <h1>Installation Guide</h1>
+            
+            <div class="install-method">
+                <h2>🚀 Quick Installation (Recommended)</h2>
+                <p>Install the latest stable version from PyPI:</p>
+                <div class="code-block">
+                    <pre><code>pip install jackofalltrades</code></pre>
+                    <button class="copy-btn" onclick="copyToClipboard('pip install jackofalltrades')">Copy</button>
+                </div>
+            </div>
+
+            <div class="install-method">
+                <h2>📋 Prerequisites</h2>
+                <ul class="requirements-list">
+                    <li>✅ Python 3.7 or higher</li>
+                    <li>✅ pip package manager</li>
+                    <li>✅ NumPy (automatically installed)</li>
+                    <li>✅ Pandas (automatically installed)</li>
+                    <li>✅ Scikit-learn (automatically installed)</li>
+                </ul>
+            </div>
+
+            <div class="install-method">
+                <h2>🔧 Development Installation</h2>
+                <p>For developers who want to contribute or use the latest features:</p>
+                <div class="code-block">
+                    <pre><code>git clone https://github.com/sanepunk/jackofalltrades.git
+cd jackofalltrades
+pip install -e .</code></pre>
+                    <button class="copy-btn" onclick="copyToClipboard('git clone https://github.com/sanepunk/jackofalltrades.git\\ncd jackofalltrades\\npip install -e .')">Copy</button>
+                </div>
+            </div>
+
+            <div class="install-method">
+                <h2>🐍 Virtual Environment (Recommended)</h2>
+                <p>Install in a virtual environment to avoid conflicts:</p>
+                <div class="code-block">
+                    <pre><code># Create virtual environment
+python -m venv jackofalltrades-env
+
+# Activate virtual environment
+# On Windows:
+jackofalltrades-env\Scripts\activate
+# On macOS/Linux:
+source jackofalltrades-env/bin/activate
+
+# Install jackofalltrades
+pip install jackofalltrades</code></pre>
+                    <button class="copy-btn" onclick="copyToClipboard('python -m venv jackofalltrades-env')">Copy</button>
+                </div>
+            </div>
+
+            <div class="install-method">
+                <h2>✅ Verify Installation</h2>
+                <p>Test that jackofalltrades is installed correctly:</p>
+                <div class="code-block">
+                    <pre><code>python -c "import jackofalltrades; print('jackofalltrades installed successfully!')"</code></pre>
+                    <button class="copy-btn" onclick="copyToClipboard('python -c &quot;import jackofalltrades; print(&apos;jackofalltrades installed successfully!&apos;)&quot;')">Copy</button>
+                </div>
+            </div>
+
+            <div class="install-method">
+                <h2>🚨 Troubleshooting</h2>
+                <div class="troubleshooting">
+                    <div class="trouble-item">
+                        <h3>Permission Denied Error</h3>
+                        <p>If you get permission errors, try:</p>
+                        <pre><code>pip install --user jackofalltrades</code></pre>
+                    </div>
+                    <div class="trouble-item">
+                        <h3>Python Version Issues</h3>
+                        <p>Ensure you're using Python 3.7+:</p>
+                        <pre><code>python --version</code></pre>
+                    </div>
+                    <div class="trouble-item">
+                        <h3>Dependency Conflicts</h3>
+                        <p>Use a fresh virtual environment:</p>
+                        <pre><code>pip install --upgrade pip
+pip install jackofalltrades</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h2>🎯 Next Steps</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <h3>1. Quick Start</h3>
+                        <p>Try your first model with our built-in datasets</p>
+                        <a href="usage.html" class="btn btn-primary">View Examples</a>
+                    </div>
+                    <div class="step-card">
+                        <h3>2. Explore Features</h3>
+                        <p>Discover all available algorithms and models</p>
+                        <a href="features.html" class="btn btn-secondary">See Features</a>
+                    </div>
+                    <div class="step-card">
+                        <h3>3. Join Community</h3>
+                        <p>Contribute to the project or get help</p>
+                        <a href="https://github.com/sanepunk/jackofalltrades" class="btn btn-outline" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Show success message
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = '#28a745';
+                setTimeout(function() {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
     
     <footer>
         <p>&copy; 2024 Jack of All Trades. All rights reserved.</p>
